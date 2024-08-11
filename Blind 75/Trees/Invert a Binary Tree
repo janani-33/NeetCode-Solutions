@@ -1,0 +1,26 @@
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if(root==null)
+        return root;
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            TreeNode p=q.remove();
+            boolean flag=false;
+            if(p.left!=null){
+                q.add(p.left);
+                flag=true;
+            }
+            if(p.right!=null){
+                q.add(p.right);
+                flag=true;
+            }
+            if(flag){
+                TreeNode temp=p.left;
+                p.left=p.right;
+                p.right=temp;
+            }
+        }
+        return root;
+    }
+}
